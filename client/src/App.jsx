@@ -1,30 +1,22 @@
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
-import memories from './assets/memories.png';
-import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
+import React, { useEffect } from 'react';
+import { Container } from '@material-ui/core';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Home from './components/Home';
+import Navbar from './components/Navbar/Navbar';
+import Auth from './components/Auth/Auth';
 
 function App() {
   return (
-    <Container maxWidth='lg'>
-      <AppBar position='static' color='inherit'>
-        <Typography variant='h2' align='center'>
-          Memories
-        </Typography>
-        <img src={memories} alt='memories' height='60' width='60' />
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid container justify-content='space-between' alignItems='stretch' spacing={4}>
-            <Grid item xs={12} sm={7}>
-              <Posts />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form />
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
-    </Container>
+    <BrowserRouter>
+      <Container maxWidth='lg'>
+        <Navbar />
+        <Routes>
+          <Route path='/' exact component={Home} />
+          <Route path='/auth' exact component={Auth} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   );
 }
 
